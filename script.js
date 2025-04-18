@@ -5,7 +5,7 @@ burger.addEventListener('click',() =>{
 });
 
 const form = document.getElementById('contactForm');
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbzjA5Rdj9R0XqQPDmeJLF6qJlwxPv4JB1oaBY_jNPhG_jR0dpBcTGeYMwJyQGj78vP6/exec';
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzwkLIz1rLPwR-ugjVJkVBPiop154x_clPpJHWIU-PcWTFbczgEJyUDep4to0ppl_3DKA/exec';
 
   form.addEventListener('submit', e => {
     e.preventDefault();
@@ -18,7 +18,6 @@ const form = document.getElementById('contactForm');
 
     fetch(scriptURL, {
       method: 'POST',
-      mode: 'cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     })
