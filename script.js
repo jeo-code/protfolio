@@ -4,27 +4,35 @@ burger.addEventListener('click',() =>{
     navlist.classList.toggle('open');
 });
 
-const contactForm = document.getElementById("contactForm");
-contactForm.addEventListener("submit", function(e){
-    e.preventDefault();
-    const name = contactForm.elements["name"].value
-    const email = contactForm.elements["email"].value
-    const message = contactForm.elements["message"].value
+const form = document.getElementById('contactForm');
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyO49DhAoDtF6POKqTZqXT9-lifqgnyPSaIzeSpsPjGXM96fAZLpkotcjQasxng6q9a/exec';  // colle ici l'URL du Web App
 
-    fetch("https://script.google.com/macros/s/AKfycbxunA_non4c4m-Q_rXgufpAPbtiG6G5Z5D7Bb4TxlMH3nKUQfHjTEYkIIUldPQBSC7i/exec",{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body: JSON.stringify({name, email, message})
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const payload = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value
+    };
+
+    fetch(scriptURL, {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
     })
-    .then(res =>{
-        if (res.ok){
-            alert("Message sent successfully");
-            contactForm.reset();
-        }else{
-            alert('there was a problem. please try again')
-        }
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === 'success') {
+        alert('Message envoyé et enregistré 📥');
+        form.reset();
+      } else {
+        alert('Erreur lors de l’enregistrement.');
+      }
     })
-    .catch(err => alert("Error : " + err.message));
-});
+    .catch(err => {
+      console.error(err);
+      alert('La requête a échoué.');
+    });
+  });
