@@ -5,7 +5,7 @@ burger.addEventListener('click',() =>{
 });
 
 const form = document.getElementById('contactForm');
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbyO49DhAoDtF6POKqTZqXT9-lifqgnyPSaIzeSpsPjGXM96fAZLpkotcjQasxng6q9a/exec';  // colle ici l'URL du Web App
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyO49DhAoDtF6POKqTZqXT9-lifqgnyPSaIzeSpsPjGXM96fAZLpkotcjQasxng6q9a/exec';
 
   form.addEventListener('submit', e => {
     e.preventDefault();
